@@ -22,14 +22,33 @@ public class AddAssignementTest {
     }
 
     @Test
-    void testSaveTema_ValidTema() {
+    void testSaveTema_ValidInput() {
         int result = service.saveTema("T1", "Description", 10, 5);
         assertEquals(0, result, "Saving a valid tema should return 1 (success).");
     }
 
     @Test
-    void testSaveTema_EmptyId() {
+    void testSaveTema_DuplicateTema() {
+        service.saveTema("T1", "Description", 10, 5); // Assume this is saved first
+        int result = service.saveTema("T1", "Description", 10, 5);
+        assertEquals(0, result, "Saving a duplicate tema should return 0 (failure).");
+    }
+
+    @Test
+    void testSaveTema_InvalidId() {
         int result = service.saveTema("", "Description", 10, 5);
         assertEquals(1, result, "Saving a tema with an empty ID should return 0 (failure).");
+    }
+
+    @Test
+    void testSaveTema_InvalidDeadline() {
+        int result = service.saveTema("T2", "Description", -1, 5);
+        assertEquals(1, result, "Saving a tema with an invalid deadline should return 0 (failure).");
+    }
+
+    @Test
+    void testSaveTema_InvalidStartline() {
+        int result = service.saveTema("T3", "Description", 10, -1);
+        assertEquals(1, result, "Saving a tema with an invalid startline should return 0 (failure).");
     }
 }
