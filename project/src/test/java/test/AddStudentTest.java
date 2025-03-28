@@ -23,67 +23,67 @@ public class AddStudentTest {
 
     @Test
     void testSaveStudent_ValidStudent() {
-        int result = service.saveStudent("S123", "John Doe", 100);
+        int result = service.saveStudent("S123", "John Doe", 123);
         assertEquals(1, result, "Saving a valid student should return 1 (success).");
     }
 
     @Test
     void testSaveStudent_EmptyId() {
-        int result = service.saveStudent("", "John Doe", 100);
-        assertEquals(1, result);
+        int result = service.saveStudent("", "John Doe", 123);
+        assertEquals(0, result);
     }
 
     @Test
     void testSaveStudent_NullId() {
-        int result = service.saveStudent(null, "John Doe", 100);
-        assertEquals(1, result, "Saving a student with a null ID should return 0 (failure).");
+        int result = service.saveStudent(null, "John Doe", 123);
+        assertEquals(0, result, "Saving a student with a null ID should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_InvalidIdSpecialChars() {
-        int result = service.saveStudent("@#$%", "John Doe", 100);
-        assertEquals(1, result, "Saving a student with special characters in ID should return 0 (failure).");
+        int result = service.saveStudent("@#$%", "John Doe", 123);
+        assertEquals(0, result, "Saving a student with special characters in ID should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_EmptyName() {
-        int result = service.saveStudent("S123", "", 101);
-        assertEquals(1, result, "Saving a student with an empty name should return 0 (failure).");
+        int result = service.saveStudent("S123", "", 123);
+        assertEquals(0, result, "Saving a student with an empty name should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_NullName() {
-        int result = service.saveStudent("S123", null, 101);
-        assertEquals(1, result, "Saving a student with a null name should return 0 (failure).");
+        int result = service.saveStudent("S123", null, 123);
+        assertEquals(0, result, "Saving a student with a null name should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_NameWithNumbers() {
-        int result = service.saveStudent("S123", "John123", 101);
-        assertEquals(1, result, "Saving a student with numbers in the name should return 0 (failure).");
+        int result = service.saveStudent("S123", "John123", 123);
+        assertEquals(0, result, "Saving a student with numbers in the name should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_NegativeGroup() {
         int result = service.saveStudent("S123", "John Doe", -10);
-        assertEquals(1, result, "Saving a student with a negative group should return 0 (failure).");
+        assertEquals(0, result, "Saving a student with a negative group should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_ZeroGroup() {
         int result = service.saveStudent("S123", "John Doe", 0);
-        assertEquals(1, result, "Saving a student with a group of 0 should return 0 (failure).");
+        assertEquals(0, result, "Saving a student with a group of 0 should return 0 (failure).");
     }
 
     @Test
     void testSaveStudent_MinValidGroup() {
-        int result = service.saveStudent("S123", "John Doe", 1);
+        int result = service.saveStudent("S125", "John Doe", 111);
         assertEquals(1, result, "Saving a student with the minimum valid group (1) should return 1 (success).");
     }
 
     @Test
     void testSaveStudent_PositiveGroup() {
-        int result = service.saveStudent("S123", "John Doe", 9999);
+        int result = service.saveStudent("S124", "John Doe", 936);
         assertEquals(1, result, "Saving a student with a large positive group should return 1 (success).");
     }
 }

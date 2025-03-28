@@ -41,7 +41,7 @@ public class Service {
         }
 
         // Validate Group
-        if (grupa < 1) {
+        if (grupa <= 110 || grupa >= 938) {
             return 0; // Invalid Group (must be at least 1)
         }
 
